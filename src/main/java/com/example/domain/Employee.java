@@ -1,11 +1,13 @@
 package com.example.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Hugo on 3/25/2016.
+ *
  */
-public class Employee {
+public class Employee implements Serializable {
     private int empNo;
     private String firstName;
     private String lastName;

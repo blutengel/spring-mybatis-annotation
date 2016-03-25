@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.persistence.EmployeeDao">
+    <!-- 二级缓存 -->
+    <cache />
 
+    <resultMap id="employees" type="com.example.domain.Employee">
 
-    <resultMap id="employeeResult" type="com.example.domain.User">
-        <result column="username" property="username"/>
-        <result column="password" property="password"/>
+        <result column="emp_no" property="empNo"/>
+        <result column="first_name" property="firstName"/>
+        <result column="last_name" property="lastName"/>
+        <result column="birth_date" property="birthDate"/>
+        <result column="hire_date" property="hireDate"/>
+        <result column="gender" property="gender"/>
     </resultMap>
 
-    <select id="findUsers" resultType="Employee">
-        SELECT * FROM employees
+    <select id="findUsers" resultMap="employees" useCache="true">
+        SELECT emp_no, first_name, last_name, gender,
+          birth_date , hire_date FROM employees
     </select>
 
 </mapper>
