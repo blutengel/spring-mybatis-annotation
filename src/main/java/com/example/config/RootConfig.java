@@ -22,7 +22,7 @@ import java.io.IOException;
  * Created by zb1209144 on 2016/3/25.
  */
 @Configuration
-@ComponentScan(basePackages = {"com.example"})
+//@ComponentScan(basePackages = {"com.example."})
 @PropertySource(value = "classpath:application.properties")
 @MapperScan("com.example.persistence")
 public class RootConfig {
