@@ -1,12 +1,10 @@
 package com.example.config;
 
-import com.example.Intercptor.LoginInterceptor;
-import com.example.Intercptor.MyInterceptor1;
-import com.example.Intercptor.MyInterceptor2;
 import com.example.Intercptor.PerformanceInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -18,6 +16,17 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.example.service", "com.example.web"})
 public class WebConfig extends WebMvcConfigurerAdapter {
+
+    // CommonsMultipartResolver是基于commons-fileupload, commons-io
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+
+        resolver.setDefaultEncoding("utf-8");   // 必须与jsp的pageEncoding一致，以便正确读取表单内容
+        resolver.setMaxUploadSize(5242880);
+
+        return resolver;
+    }
 
     // view resolver
     @Bean

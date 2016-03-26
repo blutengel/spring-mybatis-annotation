@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.persistence.EmployeeDao">
     <!-- 二级缓存 -->
-    <cache />
+    <cache/>
 
     <resultMap id="employees" type="com.example.domain.Employee">
 
@@ -16,7 +16,7 @@
 
     <select id="findUsers" resultMap="employees" useCache="true">
         SELECT emp_no, first_name, last_name, gender,
-          birth_date , hire_date FROM employees
+        birth_date , hire_date FROM employees
     </select>
 
 </mapper>

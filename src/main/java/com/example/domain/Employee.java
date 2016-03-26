@@ -7,7 +7,6 @@ import java.util.Date;
 
 /**
  * Created by Hugo on 3/25/2016.
- *
  */
 public class Employee implements Serializable {
     @JSONField(ordinal = 0)

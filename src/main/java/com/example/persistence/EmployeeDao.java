@@ -1,7 +1,7 @@
 package com.example.persistence;
 
 import com.example.domain.Employee;
-import org.apache.ibatis.session.RowBounds;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

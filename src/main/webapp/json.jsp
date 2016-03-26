@@ -20,6 +20,11 @@ limit <input type="text" name="limit"> <br>
 <button id="req">RequestJson</button>
 <button id="resp">ResponseJson</button>
 
+<form action="<c:url value="/emp/uploadPic"/>" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="submit" value="upload">
+</form>
+
 
 <script>
 
@@ -55,7 +60,7 @@ limit <input type="text" name="limit"> <br>
                 type: 'post',
                 url: '<c:url value="/emp/pagi"/>',
 //                contentType: 'application/json;charset=utf-8',
-                data: 'offset='+offset+ '&limit='+limit,
+                data: 'offset=' + offset + '&limit=' + limit,
                 success: function (data) {
                     alert(JSON.stringify(data));
                 }

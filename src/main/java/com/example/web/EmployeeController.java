@@ -5,19 +5,17 @@ import com.example.domain.Employee;
 import com.example.domain.PageBean;
 import com.example.persistence.EmployeeDao;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Hugo on 3/25/2016.
@@ -52,6 +50,28 @@ public class EmployeeController {
         List<Employee> employees = employeeDao.findUsers();
 
         return JSON.toJSONString(employees);
+    }
+
+    @RequestMapping(value = "/uploadPic", method = RequestMethod.POST)
+    public String upload(@RequestParam("file") MultipartFile file) {
+
+        if (!file.isEmpty()) {
+            String picPath = "d:/tmp/upload/";
+            String originalFilename = file.getOriginalFilename();
+
+            String newFilename = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
+
+            try {
+                File dst = new File(picPath + newFilename);
+                file.transferTo(dst);
+                return "redirect:/welcome.jsp";
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+        }
+
+        return "redirect:/login.jsp";
     }
 
 }
