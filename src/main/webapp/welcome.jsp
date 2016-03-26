@@ -14,6 +14,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Welcome to my party.</h1>
+<h1>Welcome to my party. ${sessionScope.username}</h1>
+<a href="<c:url value="/logout"/>">Logout</a>
 </body>
 </html>

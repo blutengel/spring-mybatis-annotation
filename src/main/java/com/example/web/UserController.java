@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by zb1209144 on 2016/3/25.
  */
@@ -23,10 +25,19 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(User user) {
+    public String login(User user, HttpSession session) {
         logger.warn(user.toString());
 
+        session.setAttribute("username", user.getUsername());
+
         return "redirect:welcome.jsp";
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+
+        return "redirect:login.jsp";
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)

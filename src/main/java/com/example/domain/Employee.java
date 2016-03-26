@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,12 +10,23 @@ import java.util.Date;
  *
  */
 public class Employee implements Serializable {
+    @JSONField(ordinal = 0)
     private int empNo;
+
+    @JSONField(ordinal = 1)
     private String firstName;
+
+    @JSONField(ordinal = 2)
     private String lastName;
+
+    @JSONField(ordinal = 3)
     private Date birthDate;
-    private Date hireDate;
+
+    @JSONField(ordinal = 4)
     private Gender gender;
+
+    @JSONField(ordinal = 5)
+    private Date hireDate;
 
     public Employee() {
     }
