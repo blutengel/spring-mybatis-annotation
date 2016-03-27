@@ -4,6 +4,7 @@ import com.example.Intercptor.PerformanceInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.Validator;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
@@ -62,5 +63,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //        registry.addInterceptor(new MyInterceptor1()).addPathPatterns("/emp/**");
 //        registry.addInterceptor(new MyInterceptor2()).addPathPatterns("/emp/**");
         registry.addInterceptor(new PerformanceInterceptor()).addPathPatterns("/**");       // 也可以将拦截器添加@Component, 使其成为一个bean
+    }
+
+    @Override
+    public Validator getValidator() {
+        return super.getValidator();
     }
 }

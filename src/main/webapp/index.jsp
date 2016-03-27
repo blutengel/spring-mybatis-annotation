@@ -14,6 +14,8 @@
 </head>
 <body>
 
+<h1>I am the boss.</h1>
+
 <%--<table id="example" class="display">--%>
 <%--<thead>--%>
 <%--<tr>--%>
